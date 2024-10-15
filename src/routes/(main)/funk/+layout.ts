@@ -1,4 +1,3 @@
-import { getToken, isAuthenticated, login } from '$lib/api/authApi';
 import { getFunkItemEventBulks, getFunkItems } from '$lib/api/funkApi';
 import { userToFriendlyString } from '$lib/api/funkModels';
 import { getOrganisationForUser } from '$lib/api/organisationApi';
@@ -7,22 +6,7 @@ import type { LayoutLoad } from './$types';
 
 export const ssr = false;
 
-const EMPTY = {
-	organisation: Promise.resolve(null),
-	funkData: Promise.resolve(null)
-};
-
-export const load = (async ({ url }) => {
-	const isBrowser = typeof window !== 'undefined';
-	if (!isBrowser) return EMPTY;
-
-	if (!(await isAuthenticated())) {
-		console.log('Not authenticated');
-
-		await login(url);
-		return EMPTY;
-	}
-
+export const load = (async () => {
 	return {
 		organisation: getOrganisationForUser().then((org) => {
 			org.members.sort((a, b) => userToFriendlyString(a).localeCompare(userToFriendlyString(b)));

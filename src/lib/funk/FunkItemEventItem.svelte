@@ -25,7 +25,7 @@
 	class="text-xl flex flex-row items-center p-2 gap-2 bg-thw-50 border-thw-500 border-2 shadow-sm rounded-2xl transition-colors hover:cursor-pointer overflow-x-auto"
 	class:secondary
 	class:selectedItem={isSelected}
-	href={`/device/${deviceId}`}
+	href={`/funk/device/${deviceId}`}
 >
 	<div class="text-2xl">{eventTypeToEmoji(event.type)}</div>
 	<div class="flex flex-col gap-0 w-full">

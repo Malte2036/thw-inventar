@@ -16,7 +16,11 @@
 	$: title = getCurrentTitleByPath($page.url.pathname);
 
 	function getCurrentTitleByPath(path: string): string | undefined {
-		return 'Funk';
+		if (path.startsWith('funk')) return 'Funkgeräte';
+
+		if (path.startsWith('inventar')) return 'Inventar';
+
+		return 'OV Düsseldorf';
 	}
 
 	let showFeedback = false;
